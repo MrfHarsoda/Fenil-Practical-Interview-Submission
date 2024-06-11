@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "606074296009",
+    "project_id": "geminichatapp-7c95b",
+    "storage_bucket": "geminichatapp-7c95b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606074296009:android:83c4592e4d5984da401f18",
+        "android_client_info": {
+          "package_name": "com.practical.fenilredwhitepractical"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeLALKKYEDeiy7yIlg69JuX5noJ_xArb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

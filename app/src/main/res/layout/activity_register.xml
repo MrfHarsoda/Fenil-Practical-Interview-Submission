@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.practical.fenilredwhitepractical.viewModels.RegisterViewModel" />
+
+        <variable name="context"
+            type="android.app.Activity" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="15dp"
+                android:text="Create new Account"
+                android:textSize="20sp"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_bg_border_gray"
+                android:ellipsize="end"
+                android:hint="@string/enter_email"
+                android:maxLines="1"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="15dp"
+                android:text="@={viewModel.username}" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_bg_border_gray"
+                android:ellipsize="end"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="15dp"
+                android:text="@={viewModel.password}"
+                />
+
+            <EditText
+                android:id="@+id/et_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_bg_border_gray"
+                android:ellipsize="end"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="15dp"
+                android:text="@={viewModel.conPassword}" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/ic_bg_primary"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onRegisterUser(context)}"
+                android:paddingVertical="15dp"
+                android:text="Register"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

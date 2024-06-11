@@ -1,0 +1,384 @@
+// C Programme
+
+Programme 1 :
+
+#include <stdio.h>
+
+struct Student {
+    int id;
+    char name[50];
+    char course[50];
+    int age;
+    char school[50];
+    int standard;
+};
+
+void main() {
+    struct Student students[100];
+    int n;
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n;) {
+        printf("Enter details for student %d:\n", i + 1);
+
+        printf("ID: ");
+        scanf("%d", &students[i].id);
+
+        printf("Name: ");
+        scanf("%s", students[i].name);
+
+        printf("Course: ");
+        scanf("%s", students[i].course);
+
+        printf("Age: ");
+        scanf("%d", &students[i].age);
+
+        printf("School: ");
+        scanf("%s", students[i].school);
+
+        printf("Standard: ");
+        scanf("%d", &students[i].standard);
+        
+        i++;
+    }
+
+    printf("\nDetails of students:\n");
+    for(int i = 0; i < n; i++) {
+        printf("Student %d:\n", i + 1);
+        printf("ID: %d\n", students[i].id);
+        printf("Name: %s\n", students[i].name);
+        printf("Course: %s\n", students[i].course);
+        printf("Age: %d\n", students[i].age);
+        printf("School: %s\n", students[i].school);
+        printf("Standard: %d\n\n", students[i].standard);
+    }
+}l̥
+
+
+Programme 2 :
+
+#include <stdio.h>
+
+void main() {
+    
+    int matrix[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+
+    int diagonalSum = 0;
+    int antiDiagonalSum = 0;
+
+    for(int i = 0; i < 4; i++) {
+        diagonalSum += matrix[i][i];
+        
+        if(i < 3) {
+            printf(" %d +", matrix[i][i]);
+        } else {
+            printf(" %d =", matrix[i][i]);
+        }
+    	
+    }
+
+    printf(" %d (sum of diagonal elements)\n", diagonalSum);
+
+    for(int i = 0; i < 4; i++) {
+        if(i < 3) {
+            printf(" %d +", matrix[i][3 - i]);
+        } else {
+            printf(" %d =", matrix[i][3 - i]);
+        }
+        antiDiagonalSum += matrix[i][3 - i];
+    }
+
+    printf(" %d (sum of anti-diagonal elements)\n", antiDiagonalSum);
+}
+
+
+// JAVA Core Cart
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Item {
+    String name;
+    double pricePerUnit;
+    int quantity;
+
+    public Item(String name, double pricePerUnit, int quantity) {
+        this.name = name;
+        this.pricePerUnit = pricePerUnit;
+        this.quantity = quantity;
+    }
+}
+
+class Cart {
+    private Map<String, Item> items = new HashMap<>();
+    private static final double TAX_RATE = 0.10;  // 10% tax rate
+
+    public void addItem(String name, double price, int quantity) {
+        if (items.containsKey(name)) {
+            Item existingItem = items.get(name);
+            existingItem.quantity += quantity;
+        } else {
+            items.put(name, new Item(name, price, quantity));
+        }
+    }
+
+    public void updateItem(String name, int quantity) {
+        if (items.containsKey(name)) {
+            Item existingItem = items.get(name);
+            existingItem.quantity = quantity;
+        } else {
+            System.out.println("Item not found in the cart!");
+        }
+    }
+
+    public void deleteItem(String name) {
+        if (items.containsKey(name)) {
+            items.remove(name);
+        } else {
+            System.out.println("Item not found in the cart!");
+        }
+    }
+
+    public double calculateTotal() {
+        double total = 0.0;
+        for (Item item : items.values()) {
+            total += item.pricePerUnit * item.quantity;
+        }
+        total += total * TAX_RATE;
+        return total;
+    }
+
+    public void displayCart() {
+        System.out.println("Cart Contents:");
+        for (Item item : items.values()) {
+            System.out.printf("%s: %d @ $%.2f each\n", item.name, item.quantity, item.pricePerUnit);
+        }
+        System.out.printf("Total (with tax): $%.2f\n", calculateTotal());
+    }
+
+    public boolean canPay(double walletAmount) {
+        return walletAmount >= calculateTotal();
+    }
+}
+
+public class GroceryCart {
+    public static void main(String[] args) {
+        Cart cart = new Cart();
+        double walletAmount;
+        
+        Map<String, Double> prices = new HashMap<>();
+        prices.put("Breads", 2.50);
+        prices.put("Wheat", 1.20);
+        prices.put("Milk", 3.00);
+        prices.put("Soup", 1.50);
+        prices.put("Frozen Foods", 4.00);
+        prices.put("Cheese", 2.75);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your wallet amount: $");
+        walletAmount = scanner.nextDouble();
+
+        int choice;
+        String itemName;
+        int quantity;
+
+        while (true) {
+            System.out.println("\n1. Add Item\n2. Update Item\n3. Delete Item\n4. Display Cart\n5. Finalize Bill\n6. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter item name to add: ");
+                    itemName = scanner.next();
+                    System.out.print("Enter quantity: ");
+                    quantity = scanner.nextInt();
+                    if (prices.containsKey(itemName)) {
+                        cart.addItem(itemName, prices.get(itemName), quantity);
+                    } else {
+                        System.out.println("Invalid item name!");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter item name to update: ");
+                    itemName = scanner.next();
+                    System.out.print("Enter new quantity: ");
+                    quantity = scanner.nextInt();
+                    cart.updateItem(itemName, quantity);
+                    break;
+
+                case 3:
+                    System.out.print("Enter item name to delete: ");
+                    itemName = scanner.next();
+                    cart.deleteItem(itemName);
+                    break;
+
+                case 4:
+                    cart.displayCart();
+                    break;
+
+                case 5:
+                    cart.displayCart();
+                    if (cart.canPay(walletAmount)) {
+                        System.out.println("You have enough money to pay the bill.");
+                    } else {
+                        System.out.println("You do not have enough money to pay the bill.");
+                    }
+                    break;
+
+                case 6:
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        }
+    }
+}
+
+//C++ Cart
+
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+struct Item {
+    string name;
+    double price_per_unit;
+    int quantity;
+};
+
+class Cart {
+    
+public:
+    unordered_map<string, Item> items;
+    const double TAX_RATE = 0.10;  // 10% tax rate
+    
+    double calculateTotal() {
+        double total = 0.0;
+        for (const auto &item : items) {
+            total += item.second.price_per_unit * item.second.quantity;
+        }
+        total += total * TAX_RATE;
+        return total;
+    }
+    
+    bool canPay(double walletAmount) {
+             return walletAmount >= calculateTotal();
+    }
+
+};
+
+int main() {
+    Cart cart;
+    double walletAmount;
+
+    unordered_map<string, double> prices = {
+        {"Breads", 2.50},
+        {"Wheat", 1.20},
+        {"Milk", 3.00},
+        {"Soup", 1.50},
+        {"Frozen Foods", 4.00},
+        {"Cheese", 2.75}
+    };
+
+    cout << "Enter your wallet amount: $";
+    cin >> walletAmount;
+
+    int choice;
+    string itemName;
+    int quantity;
+
+    while (true) {
+        cout << "\n1. Add Item\n2. Update Item\n3. Delete Item\n4. Display Cart\n5. Finalize Bill\n6. Exit\n";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "\n";
+                for (const auto& [key, value] : prices) {
+                    cout << key << ": $" << value << endl;
+                }
+                cout << "\nEnter item name to add: ";
+                cin >> itemName;
+                cout << "Enter quantity: ";
+                cin >> quantity;
+                if (prices.find(itemName) != prices.end()) {
+                    if (cart.items.find(itemName) != cart.items.end()) {
+                        cart.items[itemName].quantity += quantity;
+                     } else {
+                         cart.items[itemName] = {itemName,prices[itemName], quantity};
+                     }
+                } else {
+                    cout << "Invalid item name!\n";
+                }
+                break;
+
+            case 2:
+                cout << "Enter item name to update: ";
+                cin >> itemName;
+                cout << "Enter new quantity: ";
+                cin >> quantity;
+                 if (cart.items.find(itemName) != cart.items.end()) {
+                        cart.items[itemName].quantity = quantity;
+                 } else {
+                        cout << "Item not found in the cart!" << endl;
+                 }
+                break;
+
+            case 3:
+                cout << "Enter item name to delete: ";
+                cin >> itemName;
+                if (cart.items.find(itemName) != cart.items.end()) {
+                        cart.items.erase(itemName);
+                } else {
+                      cout << "Item not found in the cart!" << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Cart Contents:\n";
+                for (const auto &item : cart.items) {
+                    cout << item.second.name << ": " << item.second.quantity << " @ $" << fixed << setprecision(2) << item.second.price_per_unit << " each\n";
+                }
+                cout << "Total (with tax): $" << fixed << setprecision(2) << cart.calculateTotal() << endl;
+                break;
+
+            case 5:
+                cout << "Cart Contents:\n";
+                for (const auto &item : cart.items) {
+                    cout << item.second.name << ": " << item.second.quantity << " @ $" << fixed << setprecision(2) << item.second.price_per_unit << " each\n";
+                }
+                cout << "Total (with tax): $" << fixed << setprecision(2) << cart.calculateTotal() << endl;
+                if (cart.canPay(walletAmount)) {
+                    cout << "You have enough money to pay the bill.\n";
+                } else {
+                    cout << "You do not have enough money to pay the bill.\n";
+                }
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                cout << "Invalid choice! Please try again.\n";
+        }
+    }
+
+    return 0;
+}

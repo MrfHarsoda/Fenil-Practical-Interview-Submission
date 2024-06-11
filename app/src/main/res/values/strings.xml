@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gemini Chat App</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_message_here">Enter message here...</string>
+</resources>
